@@ -12,7 +12,7 @@ const AuthorSchema = new Schema({
 
 // Virtual for author "full" name.
 AuthorSchema.virtual('name').get(function() {
-  var fullname = '';
+  const fullname = '';
 
   if (this.first_name && this.family_name) {
     fullname = this.family_name + ', ' + this.first_name;
