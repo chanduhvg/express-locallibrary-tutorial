@@ -1,8 +1,8 @@
-var Author = require('../models/author');
+const Author = require('../models/author');
 
 // Display list of all Authors.
 exports.author_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: Author list');
+    res.send('gopichand bandarupalli doing masters at northwest missouri state university');
 };
 
 // Display detail page for a specific Author.
