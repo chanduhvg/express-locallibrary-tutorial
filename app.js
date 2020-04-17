@@ -12,7 +12,7 @@ const catalogRouter = require('./routes/catalog');  //Import routes for "catalog
 const app = express();
 dotenv.config({ path: '.env' });
 const mongoose = require('mongoose');
-const mongoDB = 'mongodb+srv://chandhuhvg:Bgc@2468@cluster0-4gszn.azure.mongodb.net/local_library?retryWrites=true&w=majority';
+const mongoDB = process.env.ATLAS_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
