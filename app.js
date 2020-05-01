@@ -1,25 +1,27 @@
+  
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const dotenv = require('dotenv');
+require('dotenv').config({path: ".env"});
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
+const catalogRouter = require('./routes/catalog');
 
 const app = express();
-dotenv.config({ path: '.env' });
-const mongoose = require('mongoose');
-const mongoDB = process.env.ATLAS_URI;
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+
+const mongodb = require("mongoose");
+mongodb.connect(process.env.ATLAS_URI, {useNewUrlParser: true, useUnifiedTopology: true});
+const db = mongodb.connection;
+db.on("error", console.error.bind(console, 'could not connect to mongo'));
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -29,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/catalog', catalogRouter);  // Add catalog routes to middleware chain.
+app.use('/catalog', catalogRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -48,3 +50,5 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+app.listen(3002, ()=>{console.log("running now.");});
