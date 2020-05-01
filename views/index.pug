@@ -1,15 +1,9 @@
-//- extends layout
-
-//- block content
-//-   h1= title
-//-   p Welcome to #{title}
-
 extends layout
 
 block content
-h1="Gopichand'S Library"
-  h1= title
-  p Welcome to #[em Northwest missouri state university],My self Gopichand Bandarupalli Studying masters at Northwest missouri state university.
+  //h1= title
+  h1 Gopichand Library
+  p Welcome to #[em Northwest Missouri State university], Gopichand Bandarupalli Studying Masters at NorthWest missouri state university
 
   h1 Dynamic content
 
@@ -25,5 +19,3 @@ h1="Gopichand'S Library"
       li #[strong Copies available:] !{data.book_instance_available_count}
       li #[strong Authors:] !{data.author_count}
       li #[strong Genres:] !{data.genre_count}
-	  extends layout
-
